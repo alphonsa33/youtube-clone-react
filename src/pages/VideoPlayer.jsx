@@ -3,7 +3,6 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Box, Typography, IconButton, Avatar, Button, Toolbar } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
-import ReactPlayer from "react-player";
 import videos from "../data/videos";
 
 function VideoPlayer() {
@@ -23,7 +22,7 @@ function VideoPlayer() {
     <Box sx={{ p: { xs: 2, md: 4 }, maxWidth: 900, mx: "auto" }}>
       <Toolbar sx={{ display: { xs: "none", sm: "block" } }} />
       <IconButton onClick={() => navigate(-1)} sx={{ mb: 1 }}>
-        <ArrowBackIcon /> 
+        <ArrowBackIcon />
       </IconButton>
 
       <Box
@@ -35,12 +34,14 @@ function VideoPlayer() {
           backgroundColor: "#000",
         }}
       >
-        <ReactPlayer
-          url={`https://www.youtube.com/watch?v=${video.id}`}
+        <iframe
+          src={`https://www.youtube.com/embed/${video.id}`}
+          title={video.title}
           width="100%"
           height="100%"
-          style={{ position: "absolute", top: 0, left: 0 }}
-          controls
+          style={{ position: "absolute", top: 0, left: 0, border: "none" }}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
         />
       </Box>
 
